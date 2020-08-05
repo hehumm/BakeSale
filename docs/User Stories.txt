@@ -1,0 +1,9 @@
+Kasutaja saab:
+1) sisestada soovitud asjad ostmiseks
+2) piisava rahahulga puhul optimaalse vahetusraha
+3) ebapiisava rahahulga puhul veateate
+4) ebapiisava kaubakoguse puhul veateate
+Administraator saab:
+5) täiendada laoseisu
+6) muuta hindu (boonus)
+7) konfigureerimisfailiga konfigureerida
