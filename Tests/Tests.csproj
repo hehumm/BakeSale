@@ -27,4 +27,8 @@
     <ProjectReference Include="..\Support\Support.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Facade\" />
+  </ItemGroup>
+
 </Project>

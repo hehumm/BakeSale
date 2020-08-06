@@ -25,15 +25,14 @@ namespace BakeSale.Tests
 
         protected static void IsNullableProperty<T>(Func<T> get, Action<T> set)
         {
-            IsProperty(get, set);
+            IsPublicProperty(get, set);
             set(default);
             Assert.IsNull(get());
         }
 
-        protected static void IsProperty<T>(Func<T> get, Action<T> set)
+        protected static void IsPublicProperty<T>(Func<T> get, Action<T> set)
         {
-            var d = (T)GetRandom.Value(typeof(T));
-            Assert.AreNotEqual(d, get());
+            var d = (T)IsProperty(get);
             set(d);
             Assert.AreEqual(d, get());
         }
@@ -46,6 +45,13 @@ namespace BakeSale.Tests
             Assert.IsTrue(property.CanRead);
             var actual = property.GetValue(o);
             Assert.AreEqual(expected, actual);
+        }
+
+        protected static object IsProperty<T>(Func<T> get)
+        {
+            var d = (T)GetRandom.Value(typeof(T));
+            Assert.AreNotEqual(d, get());
+            return d;
         }
     }
 }
