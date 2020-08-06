@@ -1,4 +1,5 @@
 using System;
+using BakeSale.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BakeSale.Tests

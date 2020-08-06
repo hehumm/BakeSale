@@ -17,4 +17,14 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Facade\Facade.csproj" />
+    <ProjectReference Include="..\Initial\BakeSaleApplication.csproj" />
+    <ProjectReference Include="..\Pages\Pages.csproj" />
+    <ProjectReference Include="..\Support\Support.csproj" />
+  </ItemGroup>
+
 </Project>
