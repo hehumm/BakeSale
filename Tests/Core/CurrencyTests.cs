@@ -12,5 +12,11 @@ namespace BakeSale.Tests.Core
         {
             IsReadOnlyProperty(ClassObj, "Name", ClassObj.Name);
         }
+
+        [TestMethod]
+        public void BanknotesAndCoins()
+        {
+            IsNullablePublicProperty(() => ClassObj.BanknotesAndCoins, x => ClassObj.BanknotesAndCoins = x);
+        }
     }
 }
