@@ -1,4 +1,6 @@
 ﻿using BakeSale.Core;
+using BakeSale.Support;
+using BakeSale.Tests.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BakeSale.Tests.Core
@@ -9,19 +11,24 @@ namespace BakeSale.Tests.Core
         [TestMethod]
         public void Amount()
         {
-            IsProperty(() => BaseObj.Amount);
+            IsProperty(() => ClassObj.Amount);
         }
 
         [TestMethod]
         public void Currency()
         {
-            IsReadOnlyProperty(BaseObj, "Currency", BaseObj.Currency);
+            IsReadOnlyProperty(ClassObj, "Currency", ClassObj.Currency);
         }
 
         [TestMethod]
-        public void TestChangeMoneyAmount()
+        public void TestChangeAmount()
         {
-
+            float initialValue = ClassObj.Amount;
+            float amountToChange = GetRandom.Float();
+            ClassObj.ChangeAmount(amountToChange);
+            Assert.AreEqual(initialValue + amountToChange, ClassObj.Amount);
+            ClassObj.ChangeAmount(-amountToChange);
+            Assert.AreEqual(initialValue, ClassObj.Amount);
         }
     }
 }

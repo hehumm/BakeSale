@@ -5,7 +5,7 @@
         public float Amount { get; private set; }
         public Currency Currency { get; }
 
-        public void ChangeMoneyAmount(float amount)
+        public void ChangeAmount(float amount)
         {
             Amount += amount;
         }

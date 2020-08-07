@@ -2,12 +2,12 @@ using System;
 using BakeSale.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BakeSale.Tests
+namespace BakeSale.Tests.Common
 {
     [TestClass]
     public abstract class BaseTest<TClass, TBaseClass>
     {
-        protected TClass BaseObj;
+        protected TClass ClassObj;
         protected Type Type;
 
         [TestInitialize]
@@ -23,7 +23,7 @@ namespace BakeSale.Tests
             Assert.AreEqual(typeof(TBaseClass), Type.BaseType);
         }
 
-        protected static void IsNullableProperty<T>(Func<T> get, Action<T> set)
+        protected static void IsNullablePublicProperty<T>(Func<T> get, Action<T> set)
         {
             IsPublicProperty(get, set);
             set(default);

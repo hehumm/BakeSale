@@ -1,4 +1,5 @@
 ﻿using BakeSale.Core;
+using BakeSale.Tests.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BakeSale.Tests.Core
@@ -9,7 +10,7 @@ namespace BakeSale.Tests.Core
         [TestMethod]
         public void Name()
         {
-            IsReadOnlyProperty(BaseObj, "Name", BaseObj.Name);
+            IsReadOnlyProperty(ClassObj, "Name", ClassObj.Name);
         }
     }
 }

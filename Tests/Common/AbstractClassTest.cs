@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BakeSale.Tests
+namespace BakeSale.Tests.Common
 {
     [TestClass]
     public abstract class AbstractClassTest<TClass, TBaseClass> : BaseTest<TClass, TBaseClass>
