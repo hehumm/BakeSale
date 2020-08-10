@@ -1,4 +1,8 @@
 ﻿import React, { Component } from 'react';
+import brownie from '../images/brownie.png'
+import muffin from '../images/muffin.png'
+import cakepop from '../images/cakepop.png'
+import water from '../images/water.png'
 
 export class BakeSale extends Component {
     static displayName = BakeSale.name;
@@ -15,6 +19,45 @@ export class BakeSale extends Component {
         });
     }
 
+    static renderProducts() {
+        return(
+            <div class="row">
+                <div class="card" style={{width: '18rem'}}>
+                    <img src={brownie} class="card-img-top" alt="brownie image"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Brownie</h5>
+                        <p class="card-text">Price: 65c</p>
+                        <p class="card-text">Stock: 48</p>
+                        </div>
+                </div>
+                <div class="card" style={{width: '18rem'}}>
+                    <img src={muffin} class="card-img-top" alt="muffin image"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Muffin</h5>
+                        <p class="card-text">Price: $1.00</p>
+                        <p class="card-text">Stock: 36</p>
+                    </div>
+                </div>
+                <div class="card" style={{width: '18rem'}}>
+                    <img src={cakepop} class="card-img-top" alt="cakepop image"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Cakepop</h5>
+                        <p class="card-text">Price: $1.35</p>
+                        <p class="card-text">Stock: 24</p> 
+                    </div>
+                </div>
+                <div class="card" style={{width: '18rem'}}>
+                    <img src={water} class="card-img-top" alt="water image"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Water</h5>
+                        <p class="card-text">Price: $1.50</p>
+                        <p class="card-text">Stock: 30</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
@@ -22,7 +65,7 @@ export class BakeSale extends Component {
 
                 <p>Welcome to our bake sale. Thanks for supporting us!</p>
 
-                <p><strong>Currently on sale:</strong></p> 
+                <p><strong>Currently on sale:{ BakeSale.renderProducts() }</strong></p>
 
                     <div class="row">
                         <div class="col-md2">
