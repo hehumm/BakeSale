@@ -1,4 +1,4 @@
-﻿using BakeSale.Data.common;
+﻿using BakeSale.Data.Common;
 
 namespace BakeSale.Data.Core
 {

@@ -1,7 +1,7 @@
-﻿using BakeSale.Data.common;
+﻿using BakeSale.Data.Common;
 using BakeSale.Data.Core;
 
-namespace BakeSale.Data
+namespace BakeSale.Data.Domain
 {
     public class ProductData : UniqueEntityData
     {

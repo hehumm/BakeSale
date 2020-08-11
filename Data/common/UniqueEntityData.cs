@@ -1,4 +1,4 @@
-﻿namespace BakeSale.Data.common
+﻿namespace BakeSale.Data.Common
 {
     public abstract class UniqueEntityData
     {
