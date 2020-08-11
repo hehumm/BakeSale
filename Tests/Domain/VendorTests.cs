@@ -8,12 +8,6 @@ namespace BakeSale.Tests.Domain
     public class VendorTests : ClassTest<Vendor, object>
     {
         [TestMethod]
-        public void Wallet()
-        {
-            IsNullablePublicProperty(() => ClassObj.Wallet, x => ClassObj.Wallet = x);
-        }
-
-        [TestMethod]
         public void Stock()
         {
             //Todo: get it working

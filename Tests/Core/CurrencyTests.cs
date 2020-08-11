@@ -16,7 +16,7 @@ namespace BakeSale.Tests.Core
         [TestMethod]
         public void BanknotesAndCoins()
         {
-            IsNullablePublicProperty(() => ClassObj.BanknotesAndCoins, x => ClassObj.BanknotesAndCoins = x);
+            IsNullablePublicProperty(() => ClassObj.BanknotesAndCoinsInStringFormat, x => ClassObj.BanknotesAndCoinsInStringFormat = x);
         }
     }
 }

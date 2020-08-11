@@ -2,8 +2,8 @@
 {
     public class Money
     {
-        public float Amount { get; private set; }
-        public Currency Currency { get; }
+        public float Amount { get; set; }
+        public Currency Currency { get; set; }
 
         public void ChangeAmount(float amount)
         {
