@@ -11,13 +11,13 @@ namespace BakeSale.Tests.Core
         [TestMethod]
         public void Amount()
         {
-            IsProperty(() => ClassObj.Amount);
+            IsPublicProperty(() => ClassObj.Amount, x => ClassObj.Amount = x);
         }
 
         [TestMethod]
         public void Currency()
         {
-            IsReadOnlyProperty(ClassObj, "Currency", ClassObj.Currency);
+            IsNullablePublicProperty(() => ClassObj.Currency, x => ClassObj.Currency = x);
         }
 
         [TestMethod]
