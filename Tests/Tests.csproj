@@ -23,7 +23,6 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Facade\Facade.csproj" />
     <ProjectReference Include="..\Initial\BakeSaleApplication.csproj" />
-    <ProjectReference Include="..\Pages\Pages.csproj" />
     <ProjectReference Include="..\Support\Support.csproj" />
   </ItemGroup>
 

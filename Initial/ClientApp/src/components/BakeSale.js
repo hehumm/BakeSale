@@ -9,14 +9,11 @@ export class BakeSale extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { currentCount: 0 };
-        this.incrementCounter = this.incrementCounter.bind(this);
+        this.state = { storeData: [] };
     }
 
-    incrementCounter() {
-        this.setState({
-            currentCount: this.state.currentCount + 1
-        });
+    componentDidMount() {
+        this.populateData();
     }
 
     static renderProducts() {
@@ -59,7 +56,15 @@ export class BakeSale extends Component {
     }
 
     render() {
-        return (
+        return(
+            <div>
+                <div>
+                    <p>Lorem epsim mida iganes</p>
+                    { this.storeData }
+                </div>
+            </div>
+        );
+        /*return (
             <div>
                 <h1>Bake Sale</h1>
 
@@ -91,6 +96,12 @@ export class BakeSale extends Component {
                     
                     </div>
             </div>
-    );
-}
+        );*/
+    }
+
+    async populateData() {
+        const response = await fetch('products');
+        const data = await response.json();
+        this.setState({ storeData: data });
+    }
 }
