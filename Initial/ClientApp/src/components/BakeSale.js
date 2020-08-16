@@ -9,69 +9,44 @@ export class BakeSale extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { storeData: [] };
+        this.state = { storeData: [], loading: true };
     }
 
     componentDidMount() {
         this.populateData();
     }
 
-    static renderProducts() {
+    static renderProducts(data) {
         return(
             <div class="row">
-                <div class="card" style={{width: '18rem'}}>
-                    <img src={brownie} class="card-img-top" alt="brownie image"/>
-                    <div class="card-body">
-                        <h5 class="card-title">Brownie</h5>
-                        <p class="card-text">Price: 65c</p>
-                        <p class="card-text">Stock: 48</p>
+                <div>
+                    {data.map(object =>
+                        <div class="card" style={{width: '18rem'}}>
+                            <img src={object.productData.image} class="card-img-top" alt="product image"/>
+                            <div class="card-body">
+                                <h5 class="card-title">{object.productData.name}</h5>
+                                <p class="card-text">Price: currently N/A</p>
+                                <p class="card-text">Stock: currently N/A</p>
+                            </div>
                         </div>
-                </div>
-                <div class="card" style={{width: '18rem'}}>
-                    <img src={muffin} class="card-img-top" alt="muffin image"/>
-                    <div class="card-body">
-                        <h5 class="card-title">Muffin</h5>
-                        <p class="card-text">Price: $1.00</p>
-                        <p class="card-text">Stock: 36</p>
-                    </div>
-                </div>
-                <div class="card" style={{width: '18rem'}}>
-                    <img src={cakepop} class="card-img-top" alt="cakepop image"/>
-                    <div class="card-body">
-                        <h5 class="card-title">Cakepop</h5>
-                        <p class="card-text">Price: $1.35</p>
-                        <p class="card-text">Stock: 24</p> 
-                    </div>
-                </div>
-                <div class="card" style={{width: '18rem'}}>
-                    <img src={water} class="card-img-top" alt="water image"/>
-                    <div class="card-body">
-                        <h5 class="card-title">Water</h5>
-                        <p class="card-text">Price: $1.50</p>
-                        <p class="card-text">Stock: 30</p>
-                    </div>
+                    )}
                 </div>
             </div>
         );
     }
 
     render() {
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+        : BakeSale.renderProducts(this.state.storeData);
         return(
             <div>
                 <div>
-                    <p>Lorem epsim mida iganes</p>
-                    { this.storeData }
+                    <h1>Bake Sale</h1>
+                    <p>Welcome to our bake sale. Thanks for supporting us!</p>
+                    <p><strong>Currently on sale:{ contents }</strong></p>
                 </div>
-            </div>
-        );
-        /*return (
-            <div>
-                <h1>Bake Sale</h1>
-
-                <p>Welcome to our bake sale. Thanks for supporting us!</p>
-
-                <p><strong>Currently on sale:{ BakeSale.renderProducts() }</strong></p>
-
+                <div>
                     <div class="row">
                         <div class="col-md2">
                             <label for="itemSelection">Product selection</label>
@@ -86,22 +61,23 @@ export class BakeSale extends Component {
                     </div> 
                     <div class="row">
                         <div class="col-3">
-                            <p>Your chosen items:</p> 
+                        <p>Your chosen items:</p> 
                         </div>
                         <div class="col-2 offset-2">
                             <button className="btn btn-primary">Checkout</button>
                         </div>
                     </div>
                     <div class="row">
-                    
+                        
                     </div>
+                </div>
             </div>
-        );*/
+        );
     }
 
     async populateData() {
         const response = await fetch('products');
         const data = await response.json();
-        this.setState({ storeData: data });
+        this.setState({ storeData: data, loading: false });
     }
 }
