@@ -16,7 +16,7 @@ namespace BakeSale.Tests.Data.Domain
         [TestMethod]
         public void AccountBalanceString()
         {
-            IsNullablePublicProperty(() => ClassObj.AccountBalanceString, x => ClassObj.AccountBalanceString = x);
+            IsNullablePublicProperty(() => ClassObj.MoneyDataId, x => ClassObj.MoneyDataId = x);
         }
     }
 }

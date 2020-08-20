@@ -1,6 +1,6 @@
 ﻿namespace BakeSale.Domain
 {
-    public class Vendor
+    public class VendorActions
     {
         public void ProcessTransaction()
         {
