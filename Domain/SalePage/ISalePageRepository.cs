@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using BakeSale.Core;
-using BakeSale.Data.Domain;
+﻿using BakeSale.Core;
 
 namespace BakeSale.Domain.SalePage
 {

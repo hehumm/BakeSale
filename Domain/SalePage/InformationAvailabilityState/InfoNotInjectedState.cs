@@ -3,37 +3,29 @@ using BakeSale.Core;
 using BakeSale.Data.Core;
 using BakeSale.Data.Domain;
 
-namespace Infra.SalePage
+namespace BakeSale.Domain.SalePage.InformationAvailabilityState
 {
-    public class ProductsObjectsList : List<ProductObject>
+    public class InfoNotInjectedState : InformationAvailabilityAbstract
     {
-        private static Dictionary<string, Money> _moniesDictionary = new Dictionary<string, Money>();
-        private static Dictionary<string,Currency> _currenciesDictionary = new Dictionary<string, Currency>();
-        private static Dictionary<string,Product> _productsDictionary = new Dictionary<string, Product>();
-        private static Dictionary<string,Vendor> _vendors = new Dictionary<string, Vendor>();
-
-        public ProductsObjectsList(IEnumerable<ProductData> productData, IEnumerable<CurrencyData> currencyData
-        , IEnumerable<MoneyData> moneyData, IEnumerable<VendorData> vendorData)
+        public override void CreateObjects(IEnumerable<CurrencyData> currencyData
+            , IEnumerable<MoneyData> moneyData
+            , IEnumerable<ProductData> productData
+            , IEnumerable<VendorData> vendorData
+            , ProductsObjectsList contextList)
         {
-            if (_currenciesDictionary.Count == 0 
-                ||_moniesDictionary.Count == 0 
-                ||_productsDictionary.Count == 0 
-                ||_vendors.Count == 0 )
-            {
-                LoadCurrencies(currencyData);
-                LoadMoney(moneyData);
-                LoadProducts(productData);
-                LoadVendors(vendorData);
-            }
-            foreach (var data in productData)
-            {
-                Add(ProductFactory.Create(
-                    _productsDictionary[data.Id]
-                    ,_moniesDictionary[data.PriceId].Currency
-                    ,_moniesDictionary[data.PriceId]
-                    //in this sale we only have 1 vendor, so no built-in function for selecting a specific one
-                    ,_vendors["1"]));
-            }
+            PopulateProperties(currencyData, moneyData, productData, vendorData);
+            ProductsObjectsList.State = new InfoInjectedState();
+            CallFactory(productData, contextList);
+        }
+
+        public void PopulateProperties(IEnumerable<CurrencyData> currencyData
+            , IEnumerable<MoneyData> moneyData, IEnumerable<ProductData> productData
+            , IEnumerable<VendorData> vendorData)
+        {
+            LoadCurrencies(currencyData);
+            LoadMoney(moneyData);
+            LoadProducts(productData);
+            LoadVendors(vendorData);
         }
 
         private static void LoadCurrencies(IEnumerable<CurrencyData> currencyData)
@@ -46,7 +38,7 @@ namespace Infra.SalePage
                 {
                     floatArray[i] = float.Parse(stringArray[i]);
                 }
-                _currenciesDictionary.Add(data.Id
+                CurrenciesDictionary.Add(data.Id
                     ,new Currency()
                     {
                         Name = data.Name,
@@ -60,11 +52,11 @@ namespace Infra.SalePage
         {
             foreach (var money in moneyData)
             {
-                _moniesDictionary.Add(money.Id
+                MoniesDictionary.Add(money.Id
                     ,new Money()
                     {
                         Amount = money.Amount
-                        ,Currency = _currenciesDictionary[money.CurrencyId]
+                        ,Currency = CurrenciesDictionary[money.CurrencyId]
                     }
                 );
             }
@@ -74,10 +66,10 @@ namespace Infra.SalePage
         {
             foreach (var data in productData)
             {
-                _productsDictionary.Add(data.Id, new Product()
+                ProductsDictionary.Add(data.Id, new Product()
                 {
                     Name = data.Name,
-                    Price = _moniesDictionary[data.PriceId].Amount
+                    Price = MoniesDictionary[data.PriceId].Amount
                 });
             }
         }
@@ -91,16 +83,16 @@ namespace Infra.SalePage
                 foreach (var productQuantity in productsAndQuantitiesInStringsArray)
                 {
                     string[] productAndQuantityArray = productQuantity.Split(':');
-                    vendor.Stock.Add(_productsDictionary[productAndQuantityArray[0]].Name,int.Parse(productAndQuantityArray[1]));
+                    vendor.Stock.Add(ProductsDictionary[productAndQuantityArray[0]].Name,int.Parse(productAndQuantityArray[1]));
                 }
 
                 string[] accountBalanceArray = data.AccountBalanceString.Split(';');
                 for (int i = 0; i < accountBalanceArray.Length; i++)
                 {
-                    vendor.AccountBalance.Add(_moniesDictionary[accountBalanceArray[i]]);
+                    vendor.AccountBalance.Add(MoniesDictionary[accountBalanceArray[i]]);
                 }
 
-                _vendors.Add(data.Id, vendor);
+                Vendors.Add(data.Id, vendor);
             }
         }
     }

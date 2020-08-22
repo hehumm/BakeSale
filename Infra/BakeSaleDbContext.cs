@@ -1,5 +1,4 @@
-﻿using BakeSale.Data;
-using BakeSale.Data.Core;
+﻿using BakeSale.Data.Core;
 using BakeSale.Data.Domain;
 using Infra.Common;
 using Microsoft.EntityFrameworkCore;

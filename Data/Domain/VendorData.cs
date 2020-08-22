@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using BakeSale.Data.Common;
-using BakeSale.Data.Core;
+﻿using BakeSale.Data.Common;
 
 namespace BakeSale.Data.Domain
 {

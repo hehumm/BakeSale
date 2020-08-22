@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BakeSale.Data.Domain;
 using BakeSale.Domain.SalePage;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BakeSale.BakeSaleApplication.Controllers

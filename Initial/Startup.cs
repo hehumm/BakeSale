@@ -1,4 +1,3 @@
-using BakeSale.Data.Domain;
 using BakeSale.Domain.SalePage;
 using Infra;
 using Infra.SalePage;

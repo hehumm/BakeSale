@@ -1,20 +1,18 @@
 ﻿using System.Collections.Generic;
+using BakeSale.Data.Core;
 using BakeSale.Data.Domain;
+using BakeSale.Domain.SalePage.InformationAvailabilityState;
 
 namespace BakeSale.Domain.SalePage
 {
     public class ProductsObjectsList : List<ProductObject>
     {
-        public ProductsObjectsList(IEnumerable<ProductData> productData)
+        public static IInformationAvailabilityState State { get; set; } = new InfoNotInjectedState();
+
+        public ProductsObjectsList(IEnumerable<ProductData> productData, IEnumerable<CurrencyData> currencyData
+        , IEnumerable<MoneyData> moneyData, IEnumerable<VendorData> vendorData)
         {
-            foreach (var data in productData)
-            {
-                Add(ProductFactory.Create(
-                    data.Id,
-                    data.Name,
-                    data.PriceId,
-                    data.Image));
-            }
+            State.CreateObjects(currencyData, moneyData, productData, vendorData, this);
         }
     }
 }

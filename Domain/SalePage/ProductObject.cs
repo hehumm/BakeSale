@@ -1,14 +1,20 @@
-﻿using BakeSale.Data.Domain;
+﻿using BakeSale.Core;
 
 namespace BakeSale.Domain.SalePage
 {
     public class ProductObject : IProduct
     {
-        public ProductData ProductData { get; }
+        public string Name { get; }
+        public Money Price { get; }
+        public int Stock { get; }
+        public byte[] Image { get; }
 
-        public ProductObject(ProductData productData)
+        public ProductObject(string name, Money price, int stock, byte[] image)
         {
-            ProductData = productData;
+            Name = name;
+            Price = price;
+            Stock = stock;
+            Image = image;
         }
     }
 }
